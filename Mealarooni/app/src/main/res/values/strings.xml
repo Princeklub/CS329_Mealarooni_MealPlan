@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Mealarooni</string>
+    <string name="action_settings">Settings</string>
+    <string name="title">Ingredients List</string>
+    <string name="ID_label">ID:</string>
+    <string name="ID_number"></string>
+    <string name="date_label">Date:</string>
+    <string name="date_value"></string>
+    <string name="enter_here">Enter ingredients here...</string>
+    <string name="list"></string>
+    <string name="MealPlanTitle">Meal Plan</string>
+    <string name="day1">Day 1:</string>
+    <string name="day2">Day 2:</string>
+    <string name="day3">Day 3:</string>
+    <string name="day4">Day 4:</string>
+    <string name="day5">Day 5:</string>
+    <string name="day6">Day 6:</string>
+    <string name="day7">Day 7:</string>
+    <string name="meal1"></string>
+    <string name="meal2"></string>
+    <string name="meal3"></string>
+    <string name="meal4"></string>
+    <string name="meal5"></string>
+    <string name="meal6"></string>
+    <string name="meal7"></string>
+    <string name="title_activity_ingredients__list">Ingredients_List</string>
+</resources>
