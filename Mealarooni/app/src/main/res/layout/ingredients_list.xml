@@ -99,11 +99,21 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate Meal Plan"
-        android:id="@+id/GenerateButton"
+        android:text="Back to Meal List"
+        android:id="@+id/btnToMealPlan"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="49dp"
         android:clickable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Just a note...we are using a yummily api instead of using SQLlite.  Our app requires lots of outside data, so we though using an API will work better for our project.  "
+        android:id="@+id/textView"
+        android:layout_below="@+id/AddButton"
+        android:layout_alignRight="@+id/ListEditText"
+        android:layout_alignEnd="@+id/ListEditText" />
 
 </RelativeLayout>

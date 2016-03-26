@@ -1,22 +1,10 @@
 package com.zareenk94yahoo.mealarooni;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.util.Log;
 
 import android.os.AsyncTask;
@@ -24,23 +12,34 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import android.widget.Button;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 
 
-public class meal_plan extends Activity{
+public class meal_plan extends Activity implements View.OnClickListener{
 
     private Exception exception;
     private TextView meals;
-
+    private Button btnToIngredients;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meal_plan);
 
         meals = (TextView) findViewById(R.id.mealTextView);
-
+        btnToIngredients = (Button) findViewById(R.id.btnToMealPlan);
         new RetrieveFeedTask().execute();
+        btnToIngredients.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v){
+        Intent intent = new Intent(meal_plan.this, ingredients_list.class);
+        startActivity(intent);
     }
 
 
@@ -93,11 +92,30 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
         if(response == null) {
             response = "THERE WAS AN ERROR";
         }
+
+
         //progressBar.setVisibility(View.GONE);
         Log.i("INFO", response);
         //responseView.setText(response);
-        meals.setText(response);
 
+        String result = "";
+        try {
+            JSONObject object = new JSONObject(response);
+            JSONArray matches = object.getJSONArray("matches");
+            int counter = 0;
+            JSONObject food = matches.getJSONObject(counter);
+            while(food != null){
+                String name = food.getString("recipeName");
+
+                result += name + '\n';
+                counter++;
+                food = matches.getJSONObject(counter);
+            }
+
+        } catch (JSONException e) {
+            // Appropriate error handling code
+        }
+        meals.setText(result);
 
     }
 }
