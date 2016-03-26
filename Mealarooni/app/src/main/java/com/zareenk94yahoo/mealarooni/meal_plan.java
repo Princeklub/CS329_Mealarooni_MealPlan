@@ -40,7 +40,7 @@ public class meal_plan extends Activity{
 
         meals = (TextView) findViewById(R.id.mealTextView);
 
-        //new RetrieveFeedTask().execute();
+        new RetrieveFeedTask().execute();
     }
 
 
