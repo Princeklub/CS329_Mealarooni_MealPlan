@@ -58,10 +58,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save to Dashboard"
-        android:id="@+id/GenerateButton"
+        android:id="@+id/btnToMealPlan"
         android:clickable="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:enabled="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -202,5 +203,22 @@
         android:layout_alignTop="@+id/Day7LabelTextView"
         android:layout_alignLeft="@+id/Day6TextView"
         android:layout_alignStart="@+id/Day6TextView" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnToMealPlan"
+        android:layout_toRightOf="@+id/IDLabelTextView"
+        android:layout_toEndOf="@+id/IDLabelTextView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MEALS GO HERE"
+            android:id="@+id/mealTextView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="179dp" />
+    </RelativeLayout>
 
 </RelativeLayout>
