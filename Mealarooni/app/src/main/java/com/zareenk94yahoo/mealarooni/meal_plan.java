@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.util.Log;
 
@@ -16,8 +17,17 @@ import android.widget.Button;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Adapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
+/* MEAL LIST VIEW IS CURRENTLY INVISIBLE UNDER PROPERTIES*/
 
 
 public class meal_plan extends Activity implements View.OnClickListener{
@@ -25,6 +35,9 @@ public class meal_plan extends Activity implements View.OnClickListener{
     private Exception exception;
     private TextView meals;
     private Button btnToIngredients;
+    private ListView myMealListView;
+    private List<String> mealsArray = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +47,55 @@ public class meal_plan extends Activity implements View.OnClickListener{
         btnToIngredients = (Button) findViewById(R.id.btnToMealPlan);
         new RetrieveFeedTask().execute();
         btnToIngredients.setOnClickListener(this);
+
+    }
+
+    public void fillListView(){
+        Log.d("MEALAROONI", "Inside fillListView()");
+        //ListView Map and List data structures
+        ArrayList<Map<String, String>> data = new ArrayList<Map<String, String>>();
+
+
+        //Loads the data from the API into a Map to load into ListView Parameter 2
+        int i = 0;
+        while(i < mealsArray.size())
+        {
+            Map<String, String> datum = new HashMap<String, String>(2);
+            datum.put("Day", "Day " + String.valueOf(i + 1));
+            datum.put("FoodItem", mealsArray.get(i));
+            data.add(datum);
+
+            //Iterate through map
+            /*for (String key: datum.keySet()){
+                Log.d("DATUM", key + " - " + datum.get(key));
+            }*/
+            Log.d("Data", String.valueOf(data.get(i)));
+            i++;
+
+        }
+
+        //Attaches the data to the list view
+        SimpleAdapter myAdapter=new
+                SimpleAdapter(
+                this, data,
+                android.R.layout.simple_list_item_2,
+                new String [] {"Day", "FoodItem"}, new int[] {android.R.id.text1,
+                android.R.id.text2});
+        ListView myMealListView=(ListView) findViewById(R.id.mealsListView);
+        myMealListView.setAdapter(myAdapter);
+
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
     }
 
     @Override
@@ -106,17 +168,22 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
             JSONObject food = matches.getJSONObject(counter);
             while(food != null){
                 String name = food.getString("recipeName");
+                mealsArray.add(name);
 
                 result += name + '\n';
                 counter++;
                 food = matches.getJSONObject(counter);
             }
 
+
+
         } catch (JSONException e) {
             // Appropriate error handling code
         }
         meals.setText(result);
 
+        //populates list view
+        fillListView();
     }
 }
 }
