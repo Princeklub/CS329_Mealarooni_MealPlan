@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.util.Log;
-
 import android.os.AsyncTask;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -31,17 +30,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Adapter;
 import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 /* MEAL LIST VIEW IS CURRENTLY INVISIBLE UNDER PROPERTIES*/
-
 
 public class meal_plan extends Activity implements View.OnClickListener{
 
@@ -51,13 +46,12 @@ public class meal_plan extends Activity implements View.OnClickListener{
     private ListView myMealListView;
     private List<String> mealsArray = new ArrayList<String>();
     private List<String> imageURLArray = new ArrayList<String>();
-
-
+    private List<String[]> mealIngredientsArray = new ArrayList<String []>();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meal_plan);
-
         meals = (TextView) findViewById(R.id.mealTextView);
         btnToIngredients = (Button) findViewById(R.id.btnToMealPlan);
         new RetrieveFeedTask().execute();
@@ -69,7 +63,6 @@ public class meal_plan extends Activity implements View.OnClickListener{
         Log.d("MEALAROONI", "Inside fillListView()");
         //ListView Map and List data structures
         ArrayList<Map<String, String>> data = new ArrayList<Map<String, String>>();
-
 
         //Loads the data from the API into a Map to load into ListView Parameter 2
         int i = 0;
@@ -86,9 +79,7 @@ public class meal_plan extends Activity implements View.OnClickListener{
             }*/
             Log.d("Data", String.valueOf(data.get(i)));
             i++;
-
         }
-
         //Attaches the data to the list view
         SimpleAdapter myAdapter=new
                 SimpleAdapter(
@@ -116,18 +107,14 @@ public class meal_plan extends Activity implements View.OnClickListener{
                     Picasso.with(getBaseContext()).load(imageURL).into(image);
                 }
                 catch (Exception x){
-
                 }
-                //
-
-
-                //image.setImageDrawable(Drawable.createFromPath(imageURLArray.get(i)));
-
-
-
-
+                //Sets toaster ingredients view
                 TextView text = (TextView) layout.findViewById(R.id.ingredientsListTextView);
-                text.setText("Hello! You are viewing" + mealsArray.get(i));
+                String ingredients = "";
+                for(int j = 0; j < mealIngredientsArray.get(i).length - 1; j++){
+                    ingredients += mealIngredientsArray.get(i)[j] + "\n";
+                }
+                text.setText("Ingredients: " + ingredients);
 
                 Toast toast = new Toast(getApplicationContext());
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
@@ -141,14 +128,11 @@ public class meal_plan extends Activity implements View.OnClickListener{
     @Override
     protected void onStart(){
         super.onStart();
-
-
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-
     }
 
     @Override
@@ -156,8 +140,6 @@ public class meal_plan extends Activity implements View.OnClickListener{
         Intent intent = new Intent(meal_plan.this, ingredients_list.class);
         startActivity(intent);
     }
-
-
 
 class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://developer.yummly.com/documentation
 
@@ -179,7 +161,6 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
     protected String doInBackground(Void... urls) {
         //String email = emailText.getText().toString();
         // Do some validation here
-
         try {
             URL url = new URL(API_URL + "_app_id=" + APP_ID + "&_app_key=" + API_KEY + breakfastTest + maxCount);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -202,15 +183,6 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
             return null;
         }
     }
-    /*
-    private String parseImageURL(String URL){
-        String newURL = URL.substring(URL.indexOf("\"") + 1, URL.lastIndexOf("\""));
-        newURL = newURL.replaceFirst("/","");
-        newURL = newURL.replaceFirst("/","");
-        newURL = newURL.replaceFirst("com\\/","com/");
-        return newURL;
-    }
-    */
 
     protected void onPostExecute(String response) {
         if(response == null) {
@@ -231,16 +203,19 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
             while(food != null){
                 String foodItem = food.getString("recipeName");
                 String imageURL = food.getJSONArray("smallImageUrls").getString(0);
+                String[] ingredientsList = new String[food.getJSONArray("ingredients").length()];
+                for(int i=0; i < food.getJSONArray("ingredients").length() - 1; i++){
+                    ingredientsList[i] = food.getJSONArray("ingredients").getString(i);
+                    Log.d("Meal Ingredients", ingredientsList[i]);
+                }
                 mealsArray.add(foodItem);
                 imageURLArray.add(imageURL);
+                mealIngredientsArray.add(ingredientsList);
 
                 result += foodItem + '\n';
                 counter++;
                 food = matches.getJSONObject(counter);
             }
-
-
-
         } catch (JSONException e) {
             // Appropriate error handling code
         }
