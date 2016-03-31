@@ -1,9 +1,19 @@
 package com.zareenk94yahoo.mealarooni;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.util.Log;
@@ -20,6 +30,9 @@ import org.json.JSONObject;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Adapter;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +50,8 @@ public class meal_plan extends Activity implements View.OnClickListener{
     private Button btnToIngredients;
     private ListView myMealListView;
     private List<String> mealsArray = new ArrayList<String>();
+    private List<String> imageURLArray = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +98,44 @@ public class meal_plan extends Activity implements View.OnClickListener{
                 android.R.id.text2});
         ListView myMealListView=(ListView) findViewById(R.id.mealsListView);
         myMealListView.setAdapter(myAdapter);
+
+        //Add toasts to ListView
+        myMealListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Toast.makeText(getApplicationContext(), imageURLArray.get(0),Toast.LENGTH_SHORT).show();
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.meal_toast,
+                        (ViewGroup) findViewById(R.id.toast_layout_root));
+
+                ImageView image = (ImageView) layout.findViewById(R.id.mealImageView);
+                try {
+                    String imageURL = imageURLArray.get(i);
+                    /*Bitmap bmp = BitmapFactory.decodeFile(new java.net.URL(imageURL).openStream());
+                    image.setImageBitmap(bmp);*/
+                    Picasso.with(getBaseContext()).load(imageURL).into(image);
+                }
+                catch (Exception x){
+
+                }
+                //
+
+
+                //image.setImageDrawable(Drawable.createFromPath(imageURLArray.get(i)));
+
+
+
+
+                TextView text = (TextView) layout.findViewById(R.id.ingredientsListTextView);
+                text.setText("Hello! You are viewing" + mealsArray.get(i));
+
+                Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setView(layout);
+                toast.show();
+            }
+        });
 
     }
     @Override
@@ -149,12 +202,20 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
             return null;
         }
     }
+    /*
+    private String parseImageURL(String URL){
+        String newURL = URL.substring(URL.indexOf("\"") + 1, URL.lastIndexOf("\""));
+        newURL = newURL.replaceFirst("/","");
+        newURL = newURL.replaceFirst("/","");
+        newURL = newURL.replaceFirst("com\\/","com/");
+        return newURL;
+    }
+    */
 
     protected void onPostExecute(String response) {
         if(response == null) {
             response = "THERE WAS AN ERROR";
         }
-
 
         //progressBar.setVisibility(View.GONE);
         Log.i("INFO", response);
@@ -166,11 +227,14 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
             JSONArray matches = object.getJSONArray("matches");
             int counter = 0;
             JSONObject food = matches.getJSONObject(counter);
-            while(food != null){
-                String name = food.getString("recipeName");
-                mealsArray.add(name);
 
-                result += name + '\n';
+            while(food != null){
+                String foodItem = food.getString("recipeName");
+                String imageURL = food.getJSONArray("smallImageUrls").getString(0);
+                mealsArray.add(foodItem);
+                imageURLArray.add(imageURL);
+
+                result += foodItem + '\n';
                 counter++;
                 food = matches.getJSONObject(counter);
             }
