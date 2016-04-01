@@ -38,6 +38,17 @@ public class meal_plan extends Activity implements View.OnClickListener{
     private ListView myMealListView;
     private List<String> mealsArray = new ArrayList<String>();
 
+    //zareen
+    //Bundle b=this.getIntent().getExtras();
+    //String[] preferencesArray=b.getStringArray("preferencesArray");
+
+    //Intent intent = getIntent();
+    //String[] preferencesArray = intent.getStringArrayExtra("preferencesArray");
+
+    //String[] preferencesArray = getIntent().getExtras().getStringArray("preferencesArray");
+
+    //ArrayList<String> preferencesArray = getIntent().getStringArrayListExtra("preferencesArray");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +62,8 @@ public class meal_plan extends Activity implements View.OnClickListener{
     }
 
     public void fillListView(){
+
+
         Log.d("MEALAROONI", "Inside fillListView()");
         //ListView Map and List data structures
         ArrayList<Map<String, String>> data = new ArrayList<Map<String, String>>();
@@ -120,6 +133,12 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
         //will ultimately build the string here!!! with params
         // supported courses = Main Dishes, Desserts, Side Dishes, Lunch and Snacks, Appetizers, Salads, Breads, Breakfast and Brunch, Soups, Beverages, Condiments and Sauces, Cocktails
         breakfastTest = "&allowedIngredient[]=eggs&allowedIngredient[]=pepper&allowedIngredient[]=salt&allowedCourse[]=course^course-Breakfast";
+
+        //zareen
+        //for (String preference : preferencesArray) {
+            //breakfastTest += "&excludedIngredientp[]=" + preference;
+        //}
+
         maxCount = "&maxResult=10";
     }
 
