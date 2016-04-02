@@ -24,4 +24,6 @@
     <string name="meal6"></string>
     <string name="meal7"></string>
     <string name="title_activity_ingredients__list">Ingredients_List</string>
+    <string name="title_activity_preferences">preferences</string>
+    <string name="peanutCheckBox">Peanut</string>
 </resources>
