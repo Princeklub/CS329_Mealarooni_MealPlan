@@ -47,7 +47,7 @@ public class meal_plan extends Activity implements View.OnClickListener{
     private List<String> mealsArray = new ArrayList<String>();
     private List<String> imageURLArray = new ArrayList<String>();
     private List<String[]> mealIngredientsArray = new ArrayList<String []>();
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
