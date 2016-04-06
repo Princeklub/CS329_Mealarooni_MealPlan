@@ -40,11 +40,16 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        boolean isInserted = myDb.insertData(emailEditText.getText().toString(), passwordEditText.getText().toString(), nameEditText.getText().toString());
-                        if (isInserted == true)
-                            Toast.makeText(SignUpActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(SignUpActivity.this, "Data NOT Inserted", Toast.LENGTH_LONG).show();
+                        if (emailEditText.getText().toString()!="" && myDb.checkEmail(emailEditText.getText().toString()) == true) {
+                            boolean isInserted = myDb.insertData(emailEditText.getText().toString(), passwordEditText.getText().toString(), nameEditText.getText().toString());
+                            if (isInserted == true)
+                                Toast.makeText(SignUpActivity.this, "Account created", Toast.LENGTH_LONG).show();
+                            else
+                                Toast.makeText(SignUpActivity.this, "Account not created", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(SignUpActivity.this, "A user account with this email already exists", Toast.LENGTH_LONG).show();
+                        }
                     }
 
                 }

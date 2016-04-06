@@ -67,6 +67,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public boolean checkEmail (String email) {
+        // Open the database for reading and writing
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //check to see if Email is already in database
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME + " where EMAIL = ?", new String[] {email});
+        if (res.getCount() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 }
