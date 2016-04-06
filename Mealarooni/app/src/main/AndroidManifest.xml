@@ -26,7 +26,9 @@
         <activity
             android:name=".preferences"
             android:label="@string/title_activity_preferences"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".SignUpActivity"></activity>
     </application>
 
 </manifest>
