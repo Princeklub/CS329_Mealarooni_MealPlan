@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.R.layout;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -38,17 +39,27 @@ public class ingredients_list extends Activity implements View.OnClickListener{
                 layout.simple_list_item_multiple_choice, new int[] {android.R.id.text1,
                 android.R.id.text2}); */
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, layout.simple_list_item_multiple_choice, ingredients);
-        Log.i("PROGRESS","adapter succesffully created with info");
+        Log.i("PROGRESS", "adapter succesffully created with info");
         IngredientView = (ListView) findViewById(R.id.IngredientListView);
         IngredientView.setAdapter(adapter);
         Log.i("PROGRESS", "adapted set to list view");
 
         //IngredientView.setOnItemClickListener(Adapter);
-        //IngredientView.setOnItemClickListener(AdapterView.OnItemClickListener);
+        IngredientView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // change the checkbox state
+                CheckedTextView checkedTextView = ((CheckedTextView)view);
+                checkedTextView.setChecked(!checkedTextView.isChecked());
+            }
+
+        });
+
 
     }
 
-    @Override
+
+        @Override
     public void onClick(View v){
 
         if(v.getId() == R.id.btnToMealPlan)
