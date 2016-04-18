@@ -21,6 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_2 = "PASSWORD";
     public static final String COL_3 = "NAME";
 
+
     // this is referencing the java class that will manage the SQL DB
     public DatabaseHelper(Context context) {
 
