@@ -21,41 +21,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ID_label"
-        android:id="@+id/IDLabelTextView"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/MealPlanTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onButtonClick"
-        android:visibility="visible"
-        android:clickable="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/ID_number"
         android:id="@+id/IDNumberTextView"
-        android:layout_below="@+id/IDLabelTextView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/date_label"
-        android:id="@+id/DateLabelTextView"
-        android:layout_alignTop="@+id/IDLabelTextView"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/MealPlanTextView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/date_value"
         android:id="@+id/DateValueTextView"
-        android:layout_below="@+id/DateLabelTextView"
-        android:layout_alignLeft="@+id/DateLabelTextView"
-        android:layout_alignStart="@+id/DateLabelTextView" />
+        android:layout_below="@+id/MealPlanTextView"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,16 +41,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/enter_here"
         android:id="@+id/IngredientsEditText"
-        android:layout_below="@+id/IDNumberTextView"
-        android:layout_marginTop="45dp"
         android:editable="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:textAlignment="center"
         android:enabled="true"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:layout_below="@+id/DateValueTextView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -83,37 +57,23 @@
         android:layout_below="@+id/IngredientsEditText"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/ListEditText"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/IngredientsEditText"
-        android:layout_alignEnd="@+id/IngredientsEditText"
-        android:text="@string/list" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back to Meal List"
         android:id="@+id/btnToMealPlan"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/IngredientListView"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="49dp"
         android:clickable="true" />
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Just a note...we are using a yummily api instead of using SQLlite.  Our app requires lots of outside data, so we though using an API will work better for our project.  "
-        android:id="@+id/textView"
+        android:id="@+id/IngredientListView"
+        android:choiceMode="none"
         android:layout_below="@+id/AddButton"
-        android:layout_alignRight="@+id/ListEditText"
-        android:layout_alignEnd="@+id/ListEditText" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

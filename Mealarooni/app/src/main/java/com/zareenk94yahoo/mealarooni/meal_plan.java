@@ -151,6 +151,21 @@ public class meal_plan extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v){
         Intent intent = new Intent(meal_plan.this, ingredients_list.class);
+        ArrayList<String> unique_ingredients = new ArrayList<>();
+        Log.i("TEST PROGRESS","The program has registered the click.");
+
+
+
+        for (int i = 0; i < mealIngredientsArray.size(); i++){
+            for(int j = 0; j < mealIngredientsArray.get(i).length - 1; j++){
+                if (!(unique_ingredients.contains(mealIngredientsArray.get(i)[j]))){
+                    unique_ingredients.add(mealIngredientsArray.get(i)[j]);
+                }
+            }
+        }
+        Log.i("TEST PROGRESS","The program has created the unique ingredients String ArrayList");
+
+        intent.putStringArrayListExtra("Ingredient_List", unique_ingredients);
         startActivity(intent);
     }
 
