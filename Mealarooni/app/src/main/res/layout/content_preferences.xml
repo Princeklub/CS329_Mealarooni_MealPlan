@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.zareenk94yahoo.mealarooni.preferences"
+    tools:showIn="@layout/activity_preferences">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preferences"
+        android:id="@+id/preferencesTitleTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check the items you do not want to include in your meal plans:"
+        android:id="@+id/excludeDescTextView"
+        android:layout_below="@+id/preferencesTitleTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/peanutCheckBox"
+        android:id="@+id/peanutCheckBox"
+        android:layout_below="@+id/excludeDescTextView"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:enabled="true"
+        android:visibility="visible" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Preferences"
+        android:id="@+id/savePreferencesButton"
+        android:layout_below="@+id/peanutCheckBox"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:visibility="visible"
+        android:clickable="true"
+        android:enabled="true"
+        android:onClick="onClick" />
+</RelativeLayout>

@@ -21,38 +21,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ID_label"
-        android:id="@+id/IDLabelTextView"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/MealPlanTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/ID_number"
         android:id="@+id/IDNumberTextView"
-        android:layout_below="@+id/IDLabelTextView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/date_label"
-        android:id="@+id/DateLabelTextView"
-        android:layout_alignTop="@+id/IDLabelTextView"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/MealPlanTextView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/date_value"
         android:id="@+id/DateValueTextView"
-        android:layout_below="@+id/DateLabelTextView"
-        android:layout_alignLeft="@+id/DateLabelTextView"
-        android:layout_alignStart="@+id/DateLabelTextView" />
+        android:layout_below="@+id/MealPlanTextView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -68,51 +49,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/day1"
-        android:id="@+id/Day1LabelTextView"
-        android:layout_below="@+id/IDNumberTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/meal1"
         android:id="@+id/Day1TextView"
-        android:layout_alignTop="@+id/Day1LabelTextView"
         android:layout_alignLeft="@+id/MealPlanTextView"
-        android:layout_alignStart="@+id/MealPlanTextView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/day2"
-        android:id="@+id/Day2LabelTextView"
-        android:layout_below="@+id/Day1LabelTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/day3"
-        android:id="@+id/Day3LabelTextView"
-        android:layout_below="@+id/Day2LabelTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/day4"
-        android:id="@+id/Day4LabelTextView"
-        android:layout_below="@+id/Day3LabelTextView"
-        android:layout_toRightOf="@+id/IDNumberTextView"
-        android:layout_toEndOf="@+id/IDNumberTextView" />
+        android:layout_alignStart="@+id/MealPlanTextView"
+        android:layout_below="@+id/IDNumberTextView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -120,7 +61,6 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/meal2"
         android:id="@+id/Day2TextView"
-        android:layout_above="@+id/Day3LabelTextView"
         android:layout_alignLeft="@+id/Day1TextView"
         android:layout_alignStart="@+id/Day1TextView" />
 
@@ -140,39 +80,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/meal4"
         android:id="@+id/Day4TextView"
-        android:layout_alignTop="@+id/Day4LabelTextView"
         android:layout_alignLeft="@+id/Day3TextView"
-        android:layout_alignStart="@+id/Day3TextView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/day5"
-        android:id="@+id/Day5LabelTextView"
-        android:layout_below="@+id/Day4LabelTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/day6"
-        android:id="@+id/Day6LabelTextView"
-        android:layout_below="@+id/Day5LabelTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/day7"
-        android:id="@+id/Day7LabelTextView"
-        android:layout_below="@+id/Day6LabelTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignStart="@+id/Day3TextView"
+        android:layout_below="@+id/IDNumberTextView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -180,9 +90,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/meal5"
         android:id="@+id/Day5TextView"
-        android:layout_alignTop="@+id/Day5LabelTextView"
         android:layout_alignLeft="@+id/Day4TextView"
-        android:layout_alignStart="@+id/Day4TextView" />
+        android:layout_alignStart="@+id/Day4TextView"
+        android:layout_below="@+id/IDNumberTextView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -200,25 +110,48 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/meal7"
         android:id="@+id/Day7TextView"
-        android:layout_alignTop="@+id/Day7LabelTextView"
         android:layout_alignLeft="@+id/Day6TextView"
-        android:layout_alignStart="@+id/Day6TextView" />
+        android:layout_alignStart="@+id/Day6TextView"
+        android:layout_below="@+id/IDNumberTextView" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btnToMealPlan"
-        android:layout_toRightOf="@+id/IDLabelTextView"
-        android:layout_toEndOf="@+id/IDLabelTextView">
+        android:id="@+id/relativeLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="MEALS GO HERE"
             android:id="@+id/mealTextView"
+            android:layout_marginTop="139dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginStart="27dp"
+            android:layout_alignTop="@+id/mealsListView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:visibility="invisible" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mealsListView"
+            android:layout_marginTop="37dp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="179dp" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
     </RelativeLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/testListView"
+        android:layout_below="@+id/Day6TextView"
+        android:layout_toRightOf="@+id/DateValueTextView"
+        android:layout_toEndOf="@+id/DateValueTextView" />
 
 </RelativeLayout>
