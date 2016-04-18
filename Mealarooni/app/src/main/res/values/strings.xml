@@ -23,6 +23,16 @@
     <string name="meal5"></string>
     <string name="meal6"></string>
     <string name="meal7"></string>
+    <string name="add">add</string>
+    <string name="reset">reset</string>
+    <string name="about">about</string>
+
+    <string name="mainmenu">Main Menu</string>
+    <string name="preferences">Preferences</string>
+    <string name="mealplan">My Meal Plan</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="grocerylist">Grocery List</string>
+    <string name="exit">Exit</string>
     <string name="title_activity_ingredients__list">Ingredients_List</string>
     <string name="title_activity_preferences">preferences</string>
     <string name="peanutCheckBox">Peanut</string>

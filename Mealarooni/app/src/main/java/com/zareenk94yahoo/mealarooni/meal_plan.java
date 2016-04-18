@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.app.Activity;
 import android.content.Intent;
@@ -47,6 +49,7 @@ public class meal_plan extends Activity implements View.OnClickListener{
     private List<String> mealsArray = new ArrayList<String>();
     private List<String> imageURLArray = new ArrayList<String>();
     private List<String[]> mealIngredientsArray = new ArrayList<String []>();
+    private ArrayList<String> preferences;
 
     //zareen
     //Bundle b=this.getIntent().getExtras();
@@ -65,9 +68,42 @@ public class meal_plan extends Activity implements View.OnClickListener{
         setContentView(R.layout.meal_plan);
         meals = (TextView) findViewById(R.id.mealTextView);
         btnToIngredients = (Button) findViewById(R.id.btnToMealPlan);
-        new RetrieveFeedTask().execute();
+
         btnToIngredients.setOnClickListener(this);
 
+        Bundle b=this.getIntent().getExtras();
+
+
+        preferences = b.getStringArrayList("preferencesArray");
+        new RetrieveFeedTask().execute();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
+        case R.id.menu_mainmenu:
+            //add the function to perform here
+
+            break;
+        case R.id.menu_preferences:
+            Intent i = new Intent(meal_plan.this, restrictions.class);
+            startActivity(i);
+            break;
+        case R.id.menu_grocerylist:
+            //Intent intent = new Intent(ingredients_list.this, grocery_list.class);
+            break;
+        case R.id.exit:
+            finish();
+            break;
+
+    }
+        return(super.onOptionsItemSelected(item));
     }
 
     public void fillListView(){
@@ -185,9 +221,9 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
         breakfastTest = "&allowedIngredient[]=eggs&allowedIngredient[]=pepper&allowedIngredient[]=salt&allowedCourse[]=course^course-Breakfast";
 
         //zareen
-        //for (String preference : preferencesArray) {
-            //breakfastTest += "&excludedIngredientp[]=" + preference;
-        //}
+        for (String preference : preferences) {
+            breakfastTest += "&excludedIngredient[]=" + preference;
+        }
 
         maxCount = "&maxResult=10";
     }
@@ -240,7 +276,7 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {  //https://develo
                 String[] ingredientsList = new String[food.getJSONArray("ingredients").length()];
                 for(int i=0; i < food.getJSONArray("ingredients").length() - 1; i++){
                     ingredientsList[i] = food.getJSONArray("ingredients").getString(i);
-                    Log.d("Meal Ingredients", ingredientsList[i]);
+
                 }
                 mealsArray.add(foodItem);
                 imageURLArray.add(imageURL);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,48 +7,47 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.zareenk94yahoo.mealarooni.preferences"
-    tools:showIn="@layout/activity_preferences">
+    tools:context="com.zareenk94yahoo.mealarooni.restrictions">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Preferences"
-        android:id="@+id/preferencesTitleTextView"
+        android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check the items you do not want to include in your meal plans:"
-        android:id="@+id/excludeDescTextView"
-        android:layout_below="@+id/preferencesTitleTextView"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Check the items you do not want included in your Meal Plan"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp" />
+        android:layout_marginTop="43dp"
+        android:textSize="20dp"
+        android:gravity="center" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/peanutCheckBox"
+        android:text="Peanuts"
         android:id="@+id/peanutCheckBox"
-        android:layout_below="@+id/excludeDescTextView"
+        android:layout_marginTop="67dp"
+        android:checked="false"
+        android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:clickable="true"
-        android:enabled="true"
-        android:visibility="visible" />
+        android:textSize="26sp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Preferences"
+        android:text="Add Preferenences"
         android:id="@+id/savePreferencesButton"
-        android:layout_below="@+id/peanutCheckBox"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:visibility="visible"
-        android:clickable="true"
-        android:enabled="true"
-        android:onClick="onClick" />
+        android:layout_marginBottom="83dp" />
+
 </RelativeLayout>

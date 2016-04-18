@@ -1,10 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.zareenk94yahoo.mealarooni.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".meal_plan">
+
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/menu_mainmenu" android:icon="@android:drawable/ic_dialog_info" app:showAsAction="never" android:title="@string/mainmenu">
+    </item>
+
+    <item
+        android:id="@+id/menu_preferences" android:icon="@android:drawable/ic_menu_add" app:showAsAction="never"   android:title="@string/preferences"/>
+    <item
+        android:id="@+id/menu_mealplan" android:icon="@android:drawable/ic_menu_revert" app:showAsAction="never" android:title="@string/mealplan"/>
+    <item
+        android:id="@+id/menu_ingredients" android:icon="@android:drawable/ic_dialog_info" app:showAsAction="never" android:title="@string/ingredients">
+    </item>
+    <item
+        android:id="@+id/menu_grocerylist" android:icon="@android:drawable/ic_dialog_info" app:showAsAction="never" android:title="@string/grocerylist">
+    </item>
+    <item
+        android:id="@+id/exit"  app:showAsAction="never" android:title="@string/exit">
+    </item>
+
 </menu>
